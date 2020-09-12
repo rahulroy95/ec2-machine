@@ -1,0 +1,21 @@
+-
+  name: ec2 launcher
+  hosts: localhost
+  connection: local
+  vars:
+      keypair: your_key_pair_name
+      instance_type: t2.micro
+      security_group: default
+      image: your_ami_image
+      region: us-west-2
+  tasks:
+      - name: launching ec2 instance
+        ec2:
+          key_name: "{{keypair}}"
+          group: "{{security_group}}"
+          instance_type: "{{instance_type}}"
+          image: "{{image}}"
+          wait: true
+          region: "{{region}}"
+          assign_public_ip:yes
+      
